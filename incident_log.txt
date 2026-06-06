@@ -1,0 +1,21 @@
+=========================
+Temperature : 50
+Humidity    : 15
+Smoke Level : 10
+Status      : SAFE
+=========================
+
+=========================
+Temperature : 50
+Humidity    : 15
+Smoke Level : 10
+Status      : SAFE
+=========================
+
+=========================
+Temperature : 50
+Humidity    : 10
+Smoke Level : 15
+Status      : SAFE
+=========================
+

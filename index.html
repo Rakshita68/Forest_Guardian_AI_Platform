@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forest Guardian AI Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>🌲 Forest Guardian AI Dashboard 🌲</h1>
+</header>
+<div id="alertBanner" class="alert-banner">
+    🟢 Forest Status Normal
+</div>
+<!-- INPUT PANEL -->
+
+<div class="input-panel">
+
+    <h2>Enter Sensor Data</h2>
+
+    <input type="number" id="temp" placeholder="Temperature">
+
+    <input type="number" id="humidity" placeholder="Humidity">
+
+    <input type="number" id="smoke" placeholder="Smoke Level">
+
+    <button onclick="analyzeData()">Analyze</button>
+
+</div>
+
+<!-- TOP CARDS -->
+
+<div class="cards">
+
+    <div class="card temp-card">
+        <h3>🌡 Temperature</h3>
+        <p id="tempValue">0°C</p>
+    </div>
+
+    <div class="card humidity-card">
+        <h3>💧 Humidity</h3>
+        <p id="humidityValue">0%</p>
+    </div>
+
+    <div class="card smoke-card">
+        <h3>🚨 Smoke Level</h3>
+        <p id="smokeValue">0</p>
+    </div>
+
+    <div class="card danger">
+        <h3>🔥 Fire Status</h3>
+        <p id="fireStatus">Waiting...</p>
+    </div>
+
+</div>
+
+<!-- ZONE + WEATHER -->
+
+<div class="row2">
+
+    <div class="panel">
+
+        <h2>📍 Zone Status</h2>
+
+        <div id="zoneStatus">
+            Enter values and click Analyze
+        </div>
+
+    </div>
+
+    <div class="panel">
+
+        <h2>🌦 Weather Analysis</h2>
+
+        <div id="weatherAnalysis">
+            Enter values and click Analyze
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FIRE RISK MAP -->
+
+<div class="riskmap">
+
+    <h2>🗺 Fire Risk Map</h2>
+
+    <div class="grid" id="riskMap"></div>
+
+</div>
+
+<div class="zone-cards">
+
+    <div class="zone-card" id="zone1">
+        <h3>🌲 Zone 1</h3>
+        <p id="zone1status">Waiting...</p>
+        <p id="zone1temp">Temp: --</p>
+    </div>
+
+    <div class="zone-card" id="zone2">
+        <h3>🌲 Zone 2</h3>
+        <p id="zone2status">Waiting...</p>
+        <p id="zone2temp">Temp: --</p>
+    </div>
+
+    <div class="zone-card" id="zone3">
+        <h3>🌲 Zone 3</h3>
+        <p id="zone3status">Waiting...</p>
+        <p id="zone3temp">Temp: --</p>
+    </div>
+
+    <div class="zone-card" id="zone4">
+        <h3>🌲 Zone 4</h3>
+        <p id="zone4status">Waiting...</p>
+        <p id="zone4temp">Temp: --</p>
+    </div>
+
+    <div class="zone-card" id="zone5">
+        <h3>🌲 Zone 5</h3>
+        <p id="zone5status">Waiting...</p>
+        <p id="zone5temp">Temp: --</p>
+    </div>
+
+</div>
+
+<div class="incident-panel">
+
+    <h2>📊 Zone Distribution</h2>
+
+    <div style="display:flex;justify-content:center;">
+        <canvas id="zoneChart"></canvas>
+    </div>
+
+</div>
+
+<!-- DASHBOARD STATS -->
+
+<div class="stats-row">
+
+    <div class="stat-card">
+        <h3>🔴 Critical Zones</h3>
+        <p id="criticalCount">0</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>🟠 High Risk Zones</h3>
+        <p id="highCount">0</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>🟢 Safe Zones</h3>
+        <p id="safeCount">0</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>📋 Total Incidents</h3>
+        <p id="incidentCount">0</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>⚠️ Risk Score</h3>
+        <p id="riskScore">0%</p>
+    </div>
+
+</div>
+
+<div class="incident-panel">
+
+    <h2>🎯 Fire Risk Meter</h2>
+
+    <div class="meter-container">
+
+        <div class="meter">
+            <div id="meterFill" class="meter-fill"></div>
+        </div>
+
+        <h2 id="meterText">0%</h2>
+
+    </div>
+
+</div>
+
+<div class="ai-panel">
+
+    <h2>🤖 AI Recommendation</h2>
+
+    <div id="aiRecommendation">
+        Enter sensor values and click Analyze
+    </div>
+
+</div>
+
+<div class="incident-panel">
+
+    <h2>🚁 Drone Surveillance</h2>
+
+    <div class="drone-panel">
+
+        <div class="drone-card">
+            <h3>Drone Status</h3>
+            <p id="droneStatus">Active</p>
+        </div>
+
+        <div class="drone-card">
+            <h3>Battery</h3>
+            <p id="droneBattery">100%</p>
+        </div>
+
+        <div class="drone-card">
+            <h3>Patrol Area</h3>
+            <p id="droneArea">Zone 1</p>
+        </div>
+
+        <div class="drone-card">
+            <h3>Hotspot</h3>
+            <p id="droneHotspot">None</p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- SENSOR TREND GRAPH -->
+
+<div class="incident-panel">
+
+    <h2>📈 Sensor Trends</h2>
+
+    <canvas id="sensorChart"></canvas>
+
+</div>
+<div style="text-align:center; margin-top:30px;">
+    <button onclick="downloadReport()">
+        📥 Download Incident Report
+    </button>
+</div>
+
+<!-- INCIDENT HISTORY -->
+
+<div class="incident-panel">
+
+    <h2>📋 Incident History</h2>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Temp</th>
+                <th>Humidity</th>
+                <th>Smoke</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody id="incidentTable">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
